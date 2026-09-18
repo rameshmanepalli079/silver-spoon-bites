@@ -14,6 +14,8 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as KitchenRouteImport } from './routes/kitchen'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as ReservationsRouteImport } from './routes/reservations'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
@@ -44,6 +46,16 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KitchenRoute = KitchenRouteImport.update({
+  id: '/kitchen',
+  path: '/kitchen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
@@ -71,6 +83,8 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/kitchen': typeof KitchenRoute
   '/menu': typeof MenuRoute
   '/reservations': typeof ReservationsRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -82,6 +96,8 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/kitchen': typeof KitchenRoute
   '/menu': typeof MenuRoute
   '/reservations': typeof ReservationsRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -94,6 +110,8 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/kitchen': typeof KitchenRoute
   '/menu': typeof MenuRoute
   '/reservations': typeof ReservationsRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -107,6 +125,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/cart'
     | '/contact'
+    | '/dashboard'
+    | '/kitchen'
     | '/menu'
     | '/reservations'
     | '/reset-password'
@@ -118,6 +138,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/cart'
     | '/contact'
+    | '/dashboard'
+    | '/kitchen'
     | '/menu'
     | '/reservations'
     | '/reset-password'
@@ -129,6 +151,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/cart'
     | '/contact'
+    | '/dashboard'
+    | '/kitchen'
     | '/menu'
     | '/reservations'
     | '/reset-password'
@@ -141,6 +165,8 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
   ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRoute
+  KitchenRoute: typeof KitchenRoute
   MenuRoute: typeof MenuRoute
   ReservationsRoute: typeof ReservationsRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
@@ -184,6 +210,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kitchen': {
+      id: '/kitchen'
+      path: '/kitchen'
+      fullPath: '/kitchen'
+      preLoaderRoute: typeof KitchenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/menu': {
       id: '/menu'
       path: '/menu'
@@ -221,6 +261,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CartRoute: CartRoute,
   ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRoute,
+  KitchenRoute: KitchenRoute,
   MenuRoute: MenuRoute,
   ReservationsRoute: ReservationsRoute,
   ResetPasswordRoute: ResetPasswordRoute,

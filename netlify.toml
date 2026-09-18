@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist/client"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback so refreshing /menu, /dashboard, /admin etc. never 404s
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

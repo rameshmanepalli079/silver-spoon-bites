@@ -8,7 +8,7 @@ import { MenuItemCard, type MenuItem } from "@/components/menu-item-card";
 import { supabase } from "@/integrations/supabase/client";
 import { CATEGORIES } from "@/lib/restaurant";
 
-type MenuSearch = { category?: string };
+type MenuSearch = { category?: string | undefined };
 
 export const Route = createFileRoute("/menu")({
   validateSearch: (search: Record<string, unknown>): MenuSearch => ({

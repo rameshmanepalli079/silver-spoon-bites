@@ -61,12 +61,16 @@ function CartPage() {
       return;
     }
     setBusy(true);
-    const { data, error } = await supabase.rpc("place_order", {
+    const args: { _items: unknown; _order_type: string; _table_number?: string; _instructions?: string } = {
       _items: items.map((i) => ({ id: i.id, quantity: i.quantity })),
       _order_type: orderType,
-      _table_number: orderType === "DINE_IN" ? tableNumber.trim() : undefined,
-      _instructions: instructions.trim() || undefined,
-    });
+    };
+    if (orderType === "DINE_IN") args._table_number = tableNumber.trim();
+    if (instructions.trim()) args._instructions = instructions.trim();
+    const { data, error } = await supabase.rpc(
+      "place_order",
+      args as Parameters<typeof supabase.rpc<"place_order">>[1],
+    );
     setBusy(false);
     if (error) {
       toast.error(error.message);

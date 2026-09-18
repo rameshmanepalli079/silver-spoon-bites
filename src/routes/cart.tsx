@@ -67,10 +67,12 @@ function CartPage() {
     };
     if (orderType === "DINE_IN") args._table_number = tableNumber.trim();
     if (instructions.trim()) args._instructions = instructions.trim();
-    const { data, error } = await supabase.rpc(
-      "place_order",
-      args as Parameters<typeof supabase.rpc<"place_order">>[1],
-    );
+    const { data, error } = await (
+      supabase.rpc as unknown as (
+        fn: string,
+        params: unknown,
+      ) => Promise<{ data: unknown; error: { message: string } | null }>
+    )("place_order", args);
     setBusy(false);
     if (error) {
       toast.error(error.message);

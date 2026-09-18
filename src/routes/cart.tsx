@@ -64,8 +64,8 @@ function CartPage() {
     const { data, error } = await supabase.rpc("place_order", {
       _items: items.map((i) => ({ id: i.id, quantity: i.quantity })),
       _order_type: orderType,
-      _table_number: orderType === "DINE_IN" ? tableNumber.trim() : null,
-      _instructions: instructions.trim() || null,
+      _table_number: orderType === "DINE_IN" ? tableNumber.trim() : undefined,
+      _instructions: instructions.trim() || undefined,
     });
     setBusy(false);
     if (error) {
